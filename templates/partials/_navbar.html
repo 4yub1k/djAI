@@ -1,0 +1,11 @@
+<div class="card">
+  <div class="card-header">Menu</div>
+  <nav class="nav flex-column">
+    <a class="nav-link"
+    {% if request.path == "/" %} style="background-color:#669999; color: white;"{% endif %}
+    href="{% url "speech" %}">Speech 2 Text</a>
+    <a class="nav-link"
+    {% if "image" in request.path %} style="background-color:#669999; color: white;"{% endif %}
+    href="{% url "image" %}">Text 2 Image</a>
+  </nav>
+</div>

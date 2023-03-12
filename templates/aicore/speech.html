@@ -1,0 +1,29 @@
+{% extends 'base.html' %} 
+
+{% block home %}
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-sm-4"  style="width: 18rem">{% include "partials/_navbar.html" %}</div>
+    <div class="col-sm-8">
+      <div class="card" >
+        <div class="mx-3 my-3">
+            <form action="{% url 'speech' %}" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+                <label for="audio" class="form-label"><b>Upload the Audio.</b></label>
+                <input class="form-control" name="audio" type="file" id="audio">
+                {% comment %} <button type="button" class="btn btn-primary" onclick="loadbar()">Submit</button> {% endcomment %}
+                <br>
+                <button type="submit" class="btn btn-dark btn-sm" >Submit</button>
+            </form>
+            {% if text %}
+              <div class="form-group">
+                <label for="output">Output Text:</label>
+                <textarea class="form-control" id="output" rows="8">{{text}}</textarea>
+              </div>
+            {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock home %}
