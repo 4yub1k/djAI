@@ -1,0 +1,40 @@
+{% extends 'base.html' %} 
+
+{% block home %}
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-sm-4"  style="width: 18rem">{% include "partials/_navbar.html" %}</div>
+    <div class="col-sm-8">
+      <div class="card" >
+        <div class="mx-3 my-3">
+            <form action="{% url 'image' %}" method="POST">
+              {% csrf_token %}
+                <label for="text" class="form-label"><b>Write the text.</b></label>
+                <input class="form-control" name="text" type="text" id="text">
+                <div class="row mt-1">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="size">Select image size.</label>
+                      <select class="form-control" name="size">
+                        <option value="256x256">256x256 px</option>
+                        <option value="512x512">512x512 px</option>
+                        <option value="1024x1024">1024x1024 px</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                {% comment %} <button type="button" class="btn btn-primary" onclick="loadbar()">Submit</button> {% endcomment %}
+                <br>
+                <button type="submit" class="btn btn-dark btn-sm" >Submit</button>
+            </form>
+            {% if image %}
+                <div class="text-center mt-1 mb-1">
+                  <img src="{{image}}" class="img-fluid" alt="{{alt}}">
+                </div>
+            {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock home %}
